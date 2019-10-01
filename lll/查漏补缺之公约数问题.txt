@@ -1,0 +1,52 @@
+*****最小公倍数和最小公约数问题的解决方案******
+算法设计：先找两个数，m和n.如果m不能被n整除，就会循环加下去。
+
+//最大公约数和最小公倍数 
+#include<stdio.h>
+
+int main()
+{
+    int a,b,i;
+	
+    printf("Please input two numbers: \n");
+    scanf("%d",&a,&b);
+	
+	for(i=9;i>0;i--)
+	{
+	    if(a%i==0 && b%i==0)
+	    {
+	         printf("最大公约数： %d",i);
+	         break;
+	     }
+	}
+	
+	return 0; 	
+}
+
+
+#include<stdio.h>
+int main()
+{
+    int m, n, temp, i;
+    printf("Input m & n:");
+    scanf("%d%d", &m, &n);
+----- 
+    if(m<n)  /*比较大小，使得m中存储大数，n中存储小数*/
+    { /*交换m和n的值*/
+        temp=m;
+        m=n;
+        n=temp;
+    }
+------
+    for(i=n; i>0; i--)  /*按照从大到小的顺序寻找满足条件的自然数*/
+        if(m%i==0 && n%i==0)
+        {/*输出满足条件的自然数并结束循环*/
+            printf("The GCD of %d and %d is: %d\n", m, n, i);
+            break;
+        }
+   
+    return 0;
+
+修改建议：当出现 6 3这种情况的时候，结果公约数为6。我的想法是添加if条件，当出现a>b && a == i ......时，printf(输出b)。这样的添加条件导致程序无法识别。
+答案里面在刚开始就进行了数字转换，将大的放在前面，将小的作为初始值。我称之为半嵌套。当在得到的结果无法加条件时，想想是否可以在数字前面加条件。
+
